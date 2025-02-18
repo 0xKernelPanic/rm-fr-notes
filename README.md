@@ -1,3 +1,1 @@
-
-# rm-fr-notes
-
+This repository serves as my personal notebook for cybersecurity and linux topics, including research, tools, techniques, and best practices. It is structured to provide organized and easily accessible documentation for reference and learning.
