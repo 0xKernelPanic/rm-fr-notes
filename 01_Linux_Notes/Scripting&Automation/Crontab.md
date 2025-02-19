@@ -29,9 +29,9 @@ created: 2025-02-19
 @Daily
 ```
 ### Files
-`/etc/crontab` - main system crontab file. 
-`/var/spool/cron/` - directory for storing crontabs defined by users.
-`/etc/cron.d/` - directory for storing system crontabs.
+- `/etc/crontab` - main system crontab file. 
+- `/var/spool/cron/` - directory for storing crontabs defined by users.
+- `/etc/cron.d/` - directory for storing system crontabs.
 ## Commands
 ```bash
 crontab -l #list current cronjobs
