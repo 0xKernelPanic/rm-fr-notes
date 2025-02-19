@@ -5,6 +5,7 @@ tags:
   - networking
   - ssh
   - reconnaissance
+  - active
 created: 2025-02-19
 ---
 
@@ -30,7 +31,12 @@ There are two competing protocols: `SSH-1` and `SSH-2`.
 5. Challenge-response authentication
 6. GSSAPI authentication
 
-[https://www.golinuxcloud.com/openssh-authentication-methods-sshd-config/](https://www.golinuxcloud.com/openssh-authentication-methods-sshd-config/)
+You can find more information about ssh authentication methods here at: [https://www.golinuxcloud.com/openssh-authentication-methods-sshd-config/](https://www.golinuxcloud.com/openssh-authentication-methods-sshd-config/)
+
+# 📡 Use Cases
+- Secure remote administration
+- Secure file transfers throught tools like SCP or SFTP
+- Encrypted tunneling and port forwarding
 
 # 🔒 Security
 ## Dangerous Settings
@@ -47,7 +53,7 @@ Despite the SSH protocol being one of the most secure protocols available today,
 | `PermitTunnel`               | Allows tunneling.                           |
 | `DebianBanner yes`           | Displays a specific banner when logging in. |
 
-SSH Hardening tricks can be read here
+SSH Hardening tricks can be read here:
 https://www.ssh-audit.com/hardening_guides.html
 
 ## Attack Vectors
@@ -65,7 +71,7 @@ nc -vn <IP> 22
  It checks the client-side and server-side configuration and shows some general information and which encryption algorithms are still used by the client and server.
 ```bash
 git clone https://github.com/jtesta/ssh-audit.git && cd ssh-audit
-./ssh-audit.py 10.129.14.132
+./ssh-audit.py <IP>
 ```
 
 **Change Authentication Method**
@@ -74,11 +80,7 @@ ssh -v <username>@<IP>
 ssh -v <username>@<IP> -o PreferredAuthentications=password
 ```
 
-# 📡 Use Cases
-- Secure remote administration
-- Secure file transfers throught tools like SCP or SFTP
-- Encrypted tunneling and port forwarding
-# 🔗 Related Protocols
+# 🔗 Related
 - **SCP** (Secure Copy Protocol)
 - **SFTP** (SSH File Transfer Protocol)
 - **Telnet** is a legacy unencrypted ssh
@@ -86,4 +88,4 @@ ssh -v <username>@<IP> -o PreferredAuthentications=password
 # 📜 References
 - https://www.keyfactor.com/blog/ssh-attack-vector-dormant-forgotten-keys/
 - https://book.hacktricks.wiki/en/generic-hacking/brute-force.html?highlight=ssh#ssh
-- 
+

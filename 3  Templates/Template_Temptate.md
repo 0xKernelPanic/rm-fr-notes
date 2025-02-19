@@ -18,20 +18,24 @@ created: "{{Date}}"
 # 🔎 Description
 {{Description}}
 
-# 🔒 Security
-## Dangerous Settings
-## Attack Vectors
-## Enumeration
-
 # 📡 Use Cases
 - {{Use Case 1}}
 - {{Use Case 2}}
 - {{Use Case 3}}
 
-# 🔗 Related Protocols
+# 🔒 Security
+## Dangerous Settings
+## Attack Vectors
+## Enumeration
+
+
+# 🔗 Related
 - {{Related Protocol 1}}
 - {{Related Protocol 2}}
 - {{Related Protocol 3}}
+
+# 🧠 Fun Facts
+- 
 
 # 📜 Sources
 - link

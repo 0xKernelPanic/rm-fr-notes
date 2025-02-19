@@ -18,6 +18,11 @@ created: "{{Date}}"
 # 🔎 Description
 {{Description}}
 
+# 📡 Use Cases
+- {{Use Case 1}}
+- {{Use Case 2}}
+- {{Use Case 3}}
+
 # 🔒 Security
 ## Dangerous Settings
 ## Attack Vectors
@@ -28,15 +33,11 @@ nc -vn <IP> <port>
 ```
 
 
-# 📡 Use Cases
-- {{Use Case 1}}
-- {{Use Case 2}}
-- {{Use Case 3}}
-
-# 🔗 Related Protocols
+# 🔗 Related
 - {{Related Protocol 1}}
 - {{Related Protocol 2}}
 - {{Related Protocol 3}}
-
+# 🧠 Fun Facts
+- 
 # 📜 References
 - link

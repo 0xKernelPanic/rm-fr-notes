@@ -5,6 +5,7 @@ tags:
   - networking
   - "#ftp"
   - reconnaissance
+  - active
 created: 2025-02-18
 ---
 
@@ -34,6 +35,10 @@ FTP typically requires credentials and transmits in `clear-text`. Some servers o
 | `quit`       | Exits tftp                            |
 | `status`     | Shows current transfer settings       |
 | `verbose`    | Toggles detailed transfer information |
+# 📡 Use Cases
+- Share files on servers
+- Remote file access and management
+- Automated file transfers
 
 # 🔒 Security
 ## Dangerous Settings
@@ -64,29 +69,28 @@ vsFTPd, the [optional settings](http://vsftpd.beasts.org/vsftpd_conf.html) that 
 **Banner Grabbing**
 ```bash
 nc -vn <IP> 21
-openssl s_client -connect crossfit.htb:21 -starttls ftp #Get certificate if any
+openssl s_client -connect <domain>:21 -starttls ftp #Get certificate
 ```
+
 **Nmap**
 ```bash
 nmap -sV -sC -Pn -T4 -p21 <ip>
 ```
+
 **Download All Available Files**
 ```bash
 wget -m --no-passive ftp://anonymous:anonymous@<target>:<port>
 ```
+
 **Browser connection**
 ```
 ftp://anonymous:anonymous@<ip>
 ```
-# 📡 Use Cases
-- Share files on servers
-- Remote file access and management
-- Automated file transfers
 
-# 🔗 Related Protocols
-- SFTP (Secure File Transfer Protocol)
-- FTPS (FTP Secure)
-- TFTP (Trivial File Transfer Protocol)
+# 🔗 Related
+- **SFTP** (Secure File Transfer Protocol)
+- **FTPS** (FTP Secure)
+- **TFTP** (Trivial File Transfer Protocol)
 
 # 📜  References
 - https://hackviser.com/tactics/pentesting/services/ftp
