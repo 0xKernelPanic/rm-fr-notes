@@ -7,7 +7,17 @@ tags:
 created: 2025-02-19
 ---
 
-# Domain Information
+## Domain Information
+`Fingerprinting` focuses on extracting technical details about the technologies powering a website or web application. Similar to how a fingerprint uniquely identifies a person, the digital signatures of web servers, `operating systems`, and `software components`can reveal critical information about a target's infrastructure and potential `security weaknesses`. 
+## Use Cases
+- Basic information about the domain
+- Company where the domain was registered
+- Creation and expiration dates
+- DNS Servers
+- Technology and security information
+
+## Fingerprinting
+
 There are several techniques used for web server and technology fingerprinting:
 - **Banner Grabbing**: Analyzing service banners to detect software and version details.
 - **HTTP Header Analysis**: Examining headers like `Server` and `X-Powered-By` to identify web server software and technologies.
@@ -106,14 +116,6 @@ In this command:
 `-h` specifies target host
 `-Tunning b` flag tells `nikto` to only run software identification
 
-
-# 📡 Use Cases
-- Basic information about the domain
-- Company where the domain was registered
-- Creation and expiration dates
-- DNS Servers
-- Technology and security information
-
-# 📜 Sources
+# Sources
 - https://who.is/
 

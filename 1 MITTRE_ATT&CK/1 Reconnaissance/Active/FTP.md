@@ -11,14 +11,14 @@ created: 2025-02-18
 
 # FTP
 
-# 📌 Basic Information
+## Basic Information
 - **Full Name:** File Transfer Protocol
 - **Abbreviation:** FTP
 - **OSI Layer:** 7
 - **Default Port(s):** 21
 - **Protocol Type:** TCP
 
-# 🔎 Description
+## Description
 The File Transfer Protocol (FTP) is a standard network protocol used for the transfer of files between a client and server. It can be accessed through browsers, email clients, or dedicated FTP programs. 
 
 FTP uses two channels: a control channel on `TCP port 21` for commands and status codes, and a data channel on `TCP port 20` for file transfers. If interrupted, transfers can resume automatically.
@@ -35,12 +35,11 @@ FTP typically requires credentials and transmits in `clear-text`. Some servers o
 | `quit`       | Exits tftp                            |
 | `status`     | Shows current transfer settings       |
 | `verbose`    | Toggles detailed transfer information |
-# 📡 Use Cases
+## Use Cases
 - Share files on servers
 - Remote file access and management
 - Automated file transfers
 
-# 🔒 Security
 ## Dangerous Settings
 
 There are many different security-related settings we can make on 
@@ -66,33 +65,33 @@ vsFTPd, the [optional settings](http://vsftpd.beasts.org/vsftpd_conf.html) that 
 4. FTP Bounce Attack
 
 ## Enumeration
-**Banner Grabbing**
+### Banner Grabbing
 ```bash
 nc -vn <IP> 21
 openssl s_client -connect <domain>:21 -starttls ftp #Get certificate
 ```
 
-**Nmap**
+### Nmap Scan
 ```bash
 nmap -sV -sC -Pn -T4 -p21 <ip>
 ```
 
-**Download All Available Files**
+### Download All Available Files
 ```bash
 wget -m --no-passive ftp://anonymous:anonymous@<target>:<port>
 ```
 
-**Browser connection**
+#### Browser connection
 ```
 ftp://anonymous:anonymous@<ip>
 ```
 
-# 🔗 Related
+## Related
 - **SFTP** (Secure File Transfer Protocol)
 - **FTPS** (FTP Secure)
 - **TFTP** (Trivial File Transfer Protocol)
 
-# 📜  References
+## References
 - https://hackviser.com/tactics/pentesting/services/ftp
 - https://www.thehacker.recipes/infra/protocols/ftp
 - https://book.hacktricks.wiki/en/network-services-pentesting/pentesting-ftp/index.html?highlight=ftp#some-ftp-commands
