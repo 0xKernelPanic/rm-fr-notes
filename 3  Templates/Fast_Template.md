@@ -6,16 +6,16 @@ created: "{{Date}}"
 
 # {{Title}}
 
-# Description
+## Description
 {{Description}}
 
-# Use Cases
+## Use Cases
 - {{Use Case 1}}
 - {{Use Case 2}}
 - {{Use Case 3}}
 
-# Fun Facts
+## Fun Facts
 - 
 
-# Sources
+## Sources
 - link
