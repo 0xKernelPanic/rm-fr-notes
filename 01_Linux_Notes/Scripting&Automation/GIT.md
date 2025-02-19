@@ -61,6 +61,9 @@ git add .         # Add all changes
 
 # Commit changes
 git commit -m "Commit message"
+
+# Pushing changes to remote
+git push origin main
 ```
 
 ### Commit history
@@ -68,7 +71,12 @@ git commit -m "Commit message"
 git log --oneline --graph --all
 ```
 
-###  Run SSH agent and add private key 
+### Adding remote repo
+```bash
+git remote add origin <URL/SSH_REPO>
+```
+
+###  Run SSH agent and add private key
 ```bash
 eval $(ssh-agent -s)
 ssh-add ~/.ssh/key
