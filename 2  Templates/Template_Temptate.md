@@ -20,7 +20,8 @@ created: "{{Date}}"
 
 # 🔒 Security
 ## Dangerous Settings
-## Footprinting the Service
+## Attack Vectors
+## Enumeration
 
 # 📡 Use Cases
 - {{Use Case 1}}

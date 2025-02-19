@@ -54,6 +54,11 @@ vsFTPd, the [optional settings](http://vsftpd.beasts.org/vsftpd_conf.html) that 
 | `no_anon_password=YES`         | Do not ask anonymous for password?                                                  |
 | `anon_root=/home/username/ftp` | Directory for anonymous.                                                            |
 | `write_enable=YES`             | Allow the usage of FTP commands: STOR, DELE, RNFR, RNTO,  MKD, RMD, APPE, and SITE? |
+## Attack Vectors
+1. Weak Credentials
+2. Anonymous Login
+3. Known Vulnerabilities
+4. FTP Bounce Attack
 
 ## Enumeration
 **Banner Grabbing**
@@ -61,12 +66,18 @@ vsFTPd, the [optional settings](http://vsftpd.beasts.org/vsftpd_conf.html) that 
 nc -vn <IP> 21
 openssl s_client -connect crossfit.htb:21 -starttls ftp #Get certificate if any
 ```
-
+**Nmap**
+```bash
+nmap -sV -sC -Pn -T4 -p21 <ip>
+```
 **Download All Available Files**
 ```bash
 wget -m --no-passive ftp://anonymous:anonymous@<target>:<port>
 ```
-
+**Browser connection**
+```
+ftp://anonymous:anonymous@<ip>
+```
 # 📡 Use Cases
 - Share files on servers
 - Remote file access and management
@@ -77,8 +88,8 @@ wget -m --no-passive ftp://anonymous:anonymous@<target>:<port>
 - FTPS (FTP Secure)
 - TFTP (Trivial File Transfer Protocol)
 
-# 📜 Sources
+# 📜  References
 - https://hackviser.com/tactics/pentesting/services/ftp
 - https://www.thehacker.recipes/infra/protocols/ftp
 - https://book.hacktricks.wiki/en/network-services-pentesting/pentesting-ftp/index.html?highlight=ftp#some-ftp-commands
-- 
+- https://github.com/harsh-bothra/learn365/blob/main/days/day38.md
