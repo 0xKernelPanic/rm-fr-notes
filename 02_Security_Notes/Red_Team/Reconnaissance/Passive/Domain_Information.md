@@ -35,19 +35,19 @@ A variety of tools exist that automate the fingerprinting process, combining var
 | `Netcraft`   | Offers a range of web security services, including website fingerprinting and security reporting.                     | Provides detailed reports on a website's technology, hosting provider, and security posture.        |
 | `wafw00f`    | Command-line tool specifically designed for identifying Web Application Firewalls (WAFs).                             | Helps determine if a WAF is present and, if so, its type and configuration.                         |
 
-## SSL Certificate
+### SSL Certificate
 The SSL certificate of a website can provide valuable information about the domains and subdomains associated with it. Often, a single certificate can cover multiple domains.
 
-## cURL
+### cURL
 Use curl to grab server information
 ```bash
-curl -I <domain>
+curl -I <target_domain>
 ```
 
-## crt.sh
+### crt.sh
 You can use **Certificate Transparency logs** to find subdomains
 ```bash
-curl -s https://crt.sh/\?q\=inlanefreight.com\&output\=json | jq .
+curl -s https://crt.sh/\?q\=`<target_domain>`\&output\=json | jq .
 ```
 
 The output can look like this:
@@ -68,7 +68,7 @@ The output can look like this:
   [...]
 ```
 
-## Whois
+### Whois
 `WHOIS` is a widely used query and response protocol designed to access databases that store information about registered internet resources. Primarily associated with domain names, WHOIS can also provide details about IP address blocks and autonomous systems.
 The usage
 ```bash
@@ -89,11 +89,11 @@ The output can look like this:
    [...]
 ```
 
-## Shodan
+### Shodan
 Can be used to find devices and systems permanently connected to the Internet like `Internet of Things` (`IoT`). It searches the Internet for open TCP/IP ports and filters the systems according to specific terms and criteria. As a result, we can find devices and systems, such as `surveillance cameras`, `servers`, `smart home systems`, `industrial controllers`, `traffic lights` and `traffic controllers`, and various network components.
 You can use the command below or check the website www.crt.sh
 ```bash
-curl -s https://crt.sh/\?q\=<domain>\&output\=json | jq . >> ip_addresses.txt
+curl -s https://crt.sh/\?q\=`<target_domain>`\&output\=json | jq . >> ip_addresses.txt
 ```
 
 Then:
@@ -101,21 +101,21 @@ Then:
 for i in $(cat ip_addresses.txt);do shodan host $i;done
 ```
 
-## Wafw00f
+### Wafw00f
 `Web Application Firewalls` (`WAFs`) are security solutions designed to protect web applications from various attacks. Before proceeding with further fingerprinting, it's crucial to determine if domain employs a WAF, as it could interfere with our probes or potentially block our requests.
 ```bash
-wafw00f <domain>
+wafw00f <target_domain>
 ```
 
-## Nikto
+### Nikto
 `Nikto` is a powerful open-source web server scanner. In addition to its primary function as a vulnerability assessment tool, `Nikto's` fingerprinting capabilities provide insights into a website's technology stack. You can download it from https://github.com/sullo/nikto
 ```bash
-nikto -h <domain> -Tuning b
+nikto -h <target_domain> -Tuning b
 ```
 In this command:
 `-h` specifies target host
 `-Tunning b` flag tells `nikto` to only run software identification
 
-# Sources
+## Sources
 - https://who.is/
 

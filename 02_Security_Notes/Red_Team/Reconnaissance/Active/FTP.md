@@ -3,9 +3,9 @@ title: FTP
 tags:
   - protocol
   - networking
-  - "#ftp"
   - reconnaissance
   - active
+  - ftp
 created: 2025-02-18
 ---
 
@@ -14,7 +14,7 @@ created: 2025-02-18
 ## Basic Information
 - **Full Name:** File Transfer Protocol
 - **Abbreviation:** FTP
-- **OSI Layer:** 7
+- **OSI Layer:** Application (Layer 7)
 - **Default Port(s):** 21
 - **Protocol Type:** TCP
 
@@ -27,7 +27,7 @@ FTP operates in either `active` or `passive` mode. Active mode can be blocked by
 
 FTP typically requires credentials and transmits in `clear-text`. Some servers offer `anonymous FTP` access without passwords, though with limited functionality for security reasons.
 
-##### Example FTP Commands
+#### Example FTP commands
 
 | **Commands** | **Description**                       |
 | ------------ | ------------------------------------- |
@@ -62,25 +62,25 @@ share files and data without accessing each other's computers. With vsFTPd, the 
 4. FTP Bounce Attack
 
 ## Enumeration
-### Banner Grabbing
+#### Banner grabbing
 ```bash
-nc -vn <IP> 21
-openssl s_client -connect <domain>:21 -starttls ftp #Get certificate
+nc -vn <target_ip> 21
+openssl s_client -connect <target_domain>:21 -starttls ftp #Get certificate
 ```
 
-### Nmap Scan
+#### Nmap scan
 ```bash
-nmap -sV -sC -Pn -T4 -p21 <ip>
+nmap -sV -sC -Pn -T4 -p21 <target_ip>
 ```
 
-### Download All Available Files
+#### Download all available files
 ```bash
-wget -m --no-passive ftp://anonymous:anonymous@<target>:<port>
+wget -m --no-passive ftp://anonymous:anonymous@<target_ip>:<port>
 ```
 
 #### Browser connection
 ```
-ftp://anonymous:anonymous@<ip>
+ftp://anonymous:anonymous@<target_ip>
 ```
 
 ## Related

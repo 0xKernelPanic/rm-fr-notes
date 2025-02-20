@@ -3,10 +3,10 @@ title: DNS
 tags:
   - protocol
   - networking
-  - dns
   - passive
   - active
   - virtual_hosts
+  - dns
 created: 2025-02-19
 ---
 
@@ -15,8 +15,11 @@ created: 2025-02-19
 ## Basic Information
 - **Full Name:** Domain Name System
 - **Abbreviation:** DNS
-- **OSI Layer:** 7
-- **Default Port(s):** 53 (unencrypted queries), 443 (DNS over HTTPS - DoH), 853 (DNS over TLS - DoT)
+- **OSI Layer:** Application (Layer 7)
+- **Default Port(s):** 
+	53 (unencrypted queries)
+	443 (DNS over HTTPS),
+	853 (DNS over TLS)
 - **Protocol Type:** UDP (for standard queries), TCP (for larger queries or responses)
 
 ## Description
@@ -32,7 +35,7 @@ The **Domain Name System (DNS)** is a decentralized naming system that converts 
 | `TLD Name Server`           | Servers responsible for specific top-level domains (e.g., .com, .org).           | [Verisign](https://en.wikipedia.org/wiki/Verisign) for `.com`, [PIR](https://en.wikipedia.org/wiki/Public_Interest_Registry) for `.org` |
 | `Authoritative Name Server` | The server that holds the actual IP address for a domain.                        | Often managed by hosting providers or domain registrars.                                                                                |
 | `DNS Record Types`          | Different types of information stored in DNS.                                    | A, AAAA, CNAME, MX, NS, TXT, etc.                                                                                                       |
-### How it Works (Step by Step):
+### How it Works
 1. **You type a domain** (e.g., `example.com`) into your browser.
 2. **Your computer checks its cache** to see if it already knows the IP address.
 3. **If not found, it asks the DNS resolver** (usually your ISP’s or a public DNS like Google’s `8.8.8.8`).
@@ -90,13 +93,12 @@ for a domain.
 | `PTR`          | The PTR record works the other way around (reverse lookup). It converts IP addresses into valid domain names. | `1.2.0.192.in-addr.arpa.` IN PTR `www.example.com.`                                            |
 | `SOA`          | Provides information about the corresponding DNS zone and email address of the administrative contact.        | `example.com.` IN SOA `ns1.example.com. admin.example.com. 2024060301 10800 3600 604800 86400` |
 
-# Use Cases
+## Use Cases
 - Resolves human-readable domain names to IP addresses.
-# Dangerous Settings
+## Dangerous Settings
 There are many ways in which a DNS server can be attacked. For 
 example, a list of vulnerabilities targeting the BIND9 server can be 
 found at [CVEdetails](https://www.cvedetails.com/product/144/ISC-Bind.html?vendor_id=64). In addition, SecurityTrails provides a short [list](https://securitytrails.com/blog/most-popular-types-dns-attacks) of the most popular attacks on DNS servers. There are also misconfigurations
-### Common misconfigurations
 
 | **Option**        | **Description**                                                                |
 | ----------------- | ------------------------------------------------------------------------------ |
@@ -110,32 +112,32 @@ found at [CVEdetails](https://www.cvedetails.com/product/144/ISC-Bind.html?vendo
 2. Mapping network infrastructure
 
 # Enumeration
-### Nmap UDP Scan
+#### Nmap UDP scan
 ```bash
-namp <IP> -sU -p53 -sV -sC
+namp <target_ip> -sU -p53 -sV -sC
 ```
 
-### Nslookup
+#### Nslookup
 ```bash
-nslookup <domain>
+nslookup <target_domain>
 ```
 
-### DIG
+#### DIG
 The `dig` command (`Domain Information Groper`) is a versatile and powerful utility for querying DNS servers and retrieving various types of DNS records.
 ```bash
-dig a <domain>
-dig ns <domain> @<nameserver> #NS request to the specific nameserver
-dig any <domain> @<nameserver> #ANY record request (can be ignored)
-dig +trace <domain> #Show full path of dns resolution
-dig +x <IP> #Performs reverse lookup
+dig a <target_domain>
+dig ns <target_domain> @<nameserver> #NS request to the specific nameserver
+dig any <target_domain> @<nameserver> #ANY record request (can be ignored)
+dig +trace <target_domain> #Show full path of dns resolution
+dig +x <target_ip> #Performs reverse lookup
 ```
 
 ### Zone Transfer (AXFR)
-Zone transfer allows DNS zone data to sync between servers over TCP port 53. It ensures consistency across name servers using the `rndc-key` for authentication. Misconfiguring `allow-transfer` (e.g., setting it to `any`) can expose internal IPs and hostnames, posing security risks.
+Zone transfer allows DNS zone data to sync between servers over TCP port 53. It ensures consistency across name servers using the `rndc-key` for authentication. Misconfiguring `allow-transfer` (e.g setting it to `any`) can expose internal IPs and hostnames, posing security risks.
 #### DIG AXFR
 ```bash
-dig axfr <domain> @<nameserver> # AXFR zone transfer request
-dig axfr internal.<domain> @<nameserver> 
+dig axfr <target_domain> @<nameserver> # AXFR zone transfer request
+dig axfr internal.<target_domain> @<nameserver> 
 ```
 
 ### Subdomain Enumeration
@@ -143,7 +145,7 @@ dig axfr internal.<domain> @<nameserver>
 Many different tools can be used for this, and most of them work in the same way. One of these tools is, for example [DNSenum](https://github.com/fwaeytens/dnsenum). Wordlists we can be used from [Seclist](https://github.com/danielmiessler/SecLists).
 
 ```bash
-dnsenum --enum <domain> -f /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -r
+dnsenum --enum <target_domain> -f /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -r
 ```
 In this command:
 `-r` recursively will try to enumerate subdomains of that subdomain.
@@ -151,7 +153,7 @@ In this command:
 We can also enumerate subdomains
 
 ```bash
-dnsenum --dnsserver <nameserver> --enum -o subdomains.txt -f /opt/useful/SecLists/Discovery/DNS/fierce-hostlist.txt <subdomain>.<domain>
+dnsenum --dnsserver <nameserver> --enum -o subdomains.txt -f /opt/useful/SecLists/Discovery/DNS/fierce-hostlist.txt <subdomain>.<target_domain>
 ```
 In this command:
 `-o` specifies the output file
@@ -159,7 +161,12 @@ In this command:
 ### Virtual Hosts
 At the core of `virtual hosting` is the ability of web servers to distinguish between multiple websites or applications sharing the same IP address. This is achieved by leveraging the `HTTP Host` header, a piece of information included in every `HTTP` request sent by a web browser.
 Virtual hosts can also be configured to use different domains, not just subdomains. 
-#### example apache config
+
+#### Types of Virtual Hosting
+- `Name-Based` uses the HTTP Host header to differentiate websites on the same IP. Cost-effective and widely supported but has limitations with SSL/TLS.
+- `IP-Based` assigns a unique IP per site, providing better isolation and protocol compatibility but requires more IPs.
+- `Port-Based` hosts sites on different ports of the same IP. Useful when IPs are limited but less user-friendly as it requires specifying ports in the URL.
+#### Example apache config
 ```apache.conf
 # Example of name-based virtual host configuration in Apache
 <VirtualHost *:80>
@@ -178,13 +185,7 @@ Virtual hosts can also be configured to use different domains, not just subdomai
 </VirtualHost>
 ```
 
-
-#### Types of Virtual Hosting
-- `Name-Based` uses the HTTP Host header to differentiate websites on the same IP. Cost-effective and widely supported but has limitations with SSL/TLS.
-- `IP-Based` assigns a unique IP per site, providing better isolation and protocol compatibility but requires more IPs.
-- `Port-Based` hosts sites on different ports of the same IP. Useful when IPs are limited but less user-friendly as it requires specifying ports in the URL.
-
-#### Virtual Host Enumeration
+#### Virtual host enumeration
 **GoBuster**
 ```bash
 gobuster vhost -u <URL>:<port> -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt --append-domain
@@ -200,21 +201,21 @@ There are a couple of other arguments that are worth knowing:
 wfuzz -H "Host: FUZZ.inlanefreight.htb" --hc 404 -H "User-Agent: PENTEST" -c -z file,/home/jollyroger/Downloads/subdomains-top1million-20000.txt "http://94.237.55.238:33222" > output.txt
 ```
 
-#### Resolving Virtual Hosts
+#### Resolving virtual hosts
 ```bash
-curl -H "Host: your-virtual-host.com" http://your-server-ip-or-domain/
+curl -H "Host: your-virtual-host.com" http://<target_ip>/
 ```
 
 you can also add entry in `/etc/hosts` file.
 
-# Related
+## Related
 - **DNSSEC** (DNS Security Extension)
 - **DoH** (DNS over HTTPS)
 - **DoT** (DNS over TLS)
 
-# Fun Facts
+## Fun Facts
 - "`IN`" stands for `internet`. It's a class field in DNS records that specifies the protocol family. There are other class values, but there are rarely used (e.g `CH` for Chaosnet, `HS` for Hesiod) 
-# References
+## References
 - https://kb.wedos.com/pl/dns-pl/teoria-dns/protokol-dns-pl/protokol-dns-komunikacja-przez-udp-i-tcp/
 - https://www.thehacker.recipes/infra/protocols/dns
 - https://www.thehacker.recipes/web/recon/virtual-host-fuzzing

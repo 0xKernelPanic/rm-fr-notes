@@ -14,7 +14,7 @@ created: 2025-02-19
 ## Basic Information
 - **Full Name:** Secure Shell Protocol
 - **Abbreviation:** SSH
-- **OSI Layer:** 7
+- **OSI Layer:** Application (Layer 7)
 - **Default Port(s):** 22
 - **Protocol Type:** TCP
 
@@ -58,24 +58,24 @@ https://www.ssh-audit.com/hardening_guides.html
 1. Password authentication brute-force
 2. Unprotected keys with bad permissions
 ## Enumeration
-### Banner Grabbing
+#### Banner grabbing
 We may encounter various banners for the SSH server during penetration tests. By default, the banners start with the version of the protocol that can be applied and then the version of the server itself. For example, with `SSH-1.99-OpenSSH_3.9p1`, we know that we can use both protocol versions SSH-1 and SSH-2, and we are dealing with OpenSSH server version 3.9p1. On the other hand, for a banner with `SSH-2.0-OpenSSH_8.2p1`, we are dealing with an OpenSSH version 8.2p1 which only accepts the SSH-2 protocol version.
 ```bash
-nc -vn <IP> 22
+nc -vn <target_ip> 22
 ```
 
-### SSH-Audit
+#### SSH-Audit
  One of the tools we can use to fingerprint the SSH server is [ssh-audit](https://github.com/jtesta/ssh-audit).
  It checks the client-side and server-side configuration and shows some general information and which encryption algorithms are still used by the client and server.
 ```bash
 git clone https://github.com/jtesta/ssh-audit.git && cd ssh-audit
-./ssh-audit.py <IP>
+./ssh-audit.py <target_ip>
 ```
 
-#### Change Authentication Method
+#### Change authentication method
 ```bash
-ssh -v <username>@<IP>
-ssh -v <username>@<IP> -o PreferredAuthentications=password
+ssh -v <user>@<target_ip>
+ssh -v <user>@<target_ip> -o PreferredAuthentications=password
 ```
 
 ## Related

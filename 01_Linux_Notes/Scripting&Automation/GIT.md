@@ -1,8 +1,8 @@
 ---
 title: GIT
 tags:
-  - git
   - version_control
+  - git
 created: 2025-02-19
 ---
 
@@ -29,7 +29,7 @@ created: 2025-02-19
 - Reverting changes
 
 ## Commands
-### Git setup
+#### Git setup
 ```bash
 # Configure user details
 git config --global user.name "Your Name"
@@ -40,17 +40,19 @@ git config --list
 
 ```
 
-### Initializing a repository
+#### Initializing a repository
 To initialize a new repository in the current folder type the following command
 ```bash
 git init
 ```
 This will create `.git file` that contains all the information about the repository
-### Clone an existing repository
+
+#### Clone an existing repository
 ```bash
 git clone <repo_url>
 ```
-### Working with changes
+
+#### Working with changes
 ```bash
 # Check status
 git status
@@ -66,17 +68,17 @@ git commit -m "Commit message"
 git push origin main
 ```
 
-### Commit history
+#### Commit history
 ```bash
 git log --oneline --graph --all
 ```
 
-### Adding remote repo
+#### Adding remote repo
 ```bash
-git remote add origin <URL/SSH_REPO>
+git remote add origin <URL>
 ```
 
-###  Run SSH agent and add private key
+####  Run SSH agent and add private key
 ```bash
 eval $(ssh-agent -s)
 ssh-add ~/.ssh/key
