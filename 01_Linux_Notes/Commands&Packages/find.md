@@ -87,7 +87,7 @@ find /path/to/search -group groupname
 find /path/to/search -regex ".*/pattern.*"
 ```
 
-> [!Remember]
+> [!NOTE]
 > When using `find` with the `-regex` option, the regular expression operates on the **full path** of the file, not just the filename or directory name. This is why you often see the pattern `".*/pattern.*"` — it ensures that the regex matches the full path, which includes all directories leading to the file.
 
 #### Executing commands on found files
