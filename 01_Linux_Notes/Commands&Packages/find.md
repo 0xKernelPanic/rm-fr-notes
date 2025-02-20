@@ -119,8 +119,8 @@ find . -type f -exec chmod 600 {} +
 ```
 
 ##### The Difference Between `+` and `\;` in `-exec`
-**`\;` (Semicolon)**: This tells `find` to execute the command once for each file it finds. It essentially runs the command separately for each file or directory, which can be inefficient if you're working with many files.
-**`+` (Plus Sign)**: This tells `find` to execute the command once for all the matching files at once, passing the files as arguments to the command. This is much more efficient, as it reduces the number of times the command is executed.
+- **`\;` (Semicolon)**: This tells `find` to execute the command once for each file it finds. It essentially runs the command separately for each file or directory, which can be inefficient if you're working with many files.
+- **`+` (Plus Sign)**: This tells `find` to execute the command once for all the matching files at once, passing the files as arguments to the command. This is much more efficient, as it reduces the number of times the command is executed.
 
 ## Sources
 - https://www.geeksforgeeks.org/find-command-in-linux-with-examples/

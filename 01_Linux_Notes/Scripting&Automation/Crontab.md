@@ -62,7 +62,7 @@ crontab -u <username> --all-of-above #do action by specific user
 0 18 * * * tar -czf /home/jollyroger/Backup/Notebook_Backup_$(date +\%F).tar.gz -C /home/jollyroger/Documents/obsidian Notebook
 ```
 
-> [!Note]
+> [!NOTE]
 Please note the `\` character before `%`. Unescaped % is treated as a **newline** separator for command input.
 
 ## Sources
