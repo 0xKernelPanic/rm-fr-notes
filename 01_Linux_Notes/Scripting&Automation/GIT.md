@@ -54,18 +54,18 @@ git clone <repo_url>
 
 #### Working with changes
 ```bash
-# Check status
-git status
+git status # Check status
+
+git diff # Check made changes
 
 # Add files to staging area
 git add <file>    # Add a specific file
 git add .         # Add all changes
 
-# Commit changes
-git commit -m "Commit message"
+git commit -m "Commit message" # Commit changes
 
-# Pushing changes to remote
-git push origin main
+
+git push origin main # Pushing changes to remote
 ```
 
 #### Commit history

@@ -23,6 +23,8 @@ find /path/to/search -name "filename.txt"
 
 # Find a file by name (case-insensitive)
 find /path/to/search -iname "filename.txt"
+
+
 ```
 
 #### Searching by type
@@ -80,30 +82,46 @@ find /path/to/search -user username
 find /path/to/search -group groupname
 ```
 
-#### Using Regular expressions
+#### Using path flag
+Note that the `-path` flag matches **the entire path** with wildcards ([globbing](https://en.wikipedia.org/wiki/Glob_(programming))).
+
+```bash
+#Exclude hidden files and directories
+find . ! -path "*/.*
+
+```
+
+#### Using regular expressions
+Regular expressions use regex
 
 ```bash
 # Find files matching a regex pattern
 find /path/to/search -regex ".*/pattern.*"
+
+# Find files containing tab excluding hidden files
+find /path/to/search -type f ! -regex ".*/\..*" -name "*tab*" 2>/dev/null
 ```
 
 > [!NOTE]
 > When using `find` with the `-regex` option, the regular expression operates on the **full path** of the file, not just the filename or directory name. This is why you often see the pattern `".*/pattern.*"` — it ensures that the regex matches the full path, which includes all directories leading to the file.
 
 #### Executing commands on found files
+> [!Warning]
+> Before you execute `find -exec` command verify the search criteria to avoid unintended changes.
+
 
 ```bash
-# Delete all .tmp files
-find /path/to/search -name "*.tmp" -exec rm {} \;
+# Delete all .tmp files (prompt before deleting each file)
+find / -name "*.tmp" -exec rm -i {} \;
 
-# Change permissions of all .sh files
-find /path/to/search -name "*.sh" -exec chmod +x {} \;
+# Change permissions of all .sh files in the current directory
+find . -name "*.sh" -exec chmod u+x {} \;
 
 # Find and compress large log files
 find /var/log -name "*.log" -size +100M -exec gzip {} \;
 
 # Find files modified in the last 7 days and move them
-find /path/to/search -type f -mtime -7 -exec mv {} /backup/location \;
+find /path/ type f -mtime -7 -exec mv {} /backup/location \;
 
 # Find and delete empty directories
 find /path/to/search -type d -empty -delete
@@ -111,11 +129,11 @@ find /path/to/search -type d -empty -delete
 # Find files larger than 1GB and list them with human-readable sizes
 find /path/to/search -type f -size +1G -exec ls -lh {} \;
 
-# Find all symbolic links and verify their targets
-find /path/to/search -type l -exec ls -l {} \;
-
 # Find all files and in current directory and change perm to 600
 find . -type f -exec chmod 600 {} +
+
+# Find all files with "file" (case-insensitive) in the name, search for "someTHing" (case-insensitive), and count them
+find ~ -type f -iname "*file*" -exec grep -iIl "someTHing" {} + | wc -l
 ```
 
 ##### The Difference Between `+` and `\;` in `-exec`
@@ -125,3 +143,4 @@ find . -type f -exec chmod 600 {} +
 ## Sources
 - https://www.geeksforgeeks.org/find-command-in-linux-with-examples/
 - man find
+- https://www.youtube.com/watch?v=skTiK_6DdqU
