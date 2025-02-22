@@ -79,7 +79,7 @@ chmod +x ./target-NFS/test.sh
 ```
 
 ## Related
-- **[[SMB (in progress)]]** Server Message Block 
+- **[[SMB]]** Server Message Block 
 - **RPC** (Remote Procedure Call)
 - ***[[1 Projects/IT/02_Security_Notes/Red_Team/Reconnaissance/Active/FTP|FTP]]*** (File Transfer Protocol)
 
