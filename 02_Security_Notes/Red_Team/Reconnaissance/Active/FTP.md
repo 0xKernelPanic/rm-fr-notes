@@ -44,9 +44,6 @@ FTP typically requires credentials and transmits in `clear-text`. Some servers o
 
 ## Dangerous Settings
 
-There are many different security-related settings we can make on each FTP server. These can have various purposes, such as testing connections through the firewalls, testing routes, and authentication mechanisms. One of these authentication mechanisms is the `anonymous` user. This is often used to allow everyone on the internal network to 
-share files and data without accessing each other's computers. With vsFTPd, the [optional settings](http://vsftpd.beasts.org/vsftpd_conf.html) that can be added to the configuration file for the anonymous login look like this
-
 | **Setting**                    | **Description**                                                                     |
 | ------------------------------ | ----------------------------------------------------------------------------------- |
 | `anonymous_enable=YES`         | Allowing anonymous login?                                                           |

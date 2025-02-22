@@ -96,9 +96,6 @@ for a domain.
 ## Use Cases
 - Resolves human-readable domain names to IP addresses.
 ## Dangerous Settings
-There are many ways in which a DNS server can be attacked. For 
-example, a list of vulnerabilities targeting the BIND9 server can be 
-found at [CVEdetails](https://www.cvedetails.com/product/144/ISC-Bind.html?vendor_id=64). In addition, SecurityTrails provides a short [list](https://securitytrails.com/blog/most-popular-types-dns-attacks) of the most popular attacks on DNS servers. There are also misconfigurations
 
 | **Option**        | **Description**                                                                |
 | ----------------- | ------------------------------------------------------------------------------ |
@@ -190,6 +187,10 @@ Virtual hosts can also be configured to use different domains, not just subdomai
 ```bash
 gobuster vhost -u <URL>:<port> -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt --append-domain
 ```
+
+> [!NOTE]
+Don't forget to add `--append-domain` in gobuster
+
 There are a couple of other arguments that are worth knowing:
 
 - Consider using the `-t` flag to increase the number of threads for faster scanning.

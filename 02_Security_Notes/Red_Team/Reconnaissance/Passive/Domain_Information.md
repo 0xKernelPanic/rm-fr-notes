@@ -4,6 +4,7 @@ tags:
   - reconnaissance
   - passive
   - fingerprinting
+  - robots
 created: 2025-02-19
 ---
 
@@ -16,7 +17,7 @@ created: 2025-02-19
 - DNS Servers
 - Technology and security information
 
-## Fingerprinting
+## Manual Fingerprinting
 
 There are several techniques used for web server and technology fingerprinting:
 - **Banner Grabbing**: Analyzing service banners to detect software and version details.
@@ -26,14 +27,12 @@ There are several techniques used for web server and technology fingerprinting:
 
 A variety of tools exist that automate the fingerprinting process, combining various techniques to identify web servers, operating systems, content management systems, and other technologies:
 
-| Tool         | Description                                                                                                           | Features                                                                                            |
-| ------------ | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| `Wappalyzer` | Browser extension and online service for website technology profiling.                                                | Identifies a wide range of web technologies, including CMSs, frameworks, analytics tools, and more. |
-| `BuiltWith`  | Web technology profiler that provides detailed reports on a website's technology stack.                               | Offers both free and paid plans with varying levels of detail.                                      |
-| `WhatWeb`    | Command-line tool for website fingerprinting.                                                                         | Uses a vast database of signatures to identify various web technologies.                            |
-| `Nmap`       | Versatile network scanner that can be used for various reconnaissance tasks, including service and OS fingerprinting. | Can be used with scripts (NSE) to perform more specialised fingerprinting.                          |
-| `Netcraft`   | Offers a range of web security services, including website fingerprinting and security reporting.                     | Provides detailed reports on a website's technology, hosting provider, and security posture.        |
-| `wafw00f`    | Command-line tool specifically designed for identifying Web Application Firewalls (WAFs).                             | Helps determine if a WAF is present and, if so, its type and configuration.                         |
+| Tool         | Description                                                                                       | Features                                                                                            |
+| ------------ | ------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `Wappalyzer` | Browser extension and online service for website technology profiling.                            | Identifies a wide range of web technologies, including CMSs, frameworks, analytics tools, and more. |
+| `BuiltWith`  | Web technology profiler that provides detailed reports on a website's technology stack.           | Offers both free and paid plans with varying levels of detail.                                      |
+| `WhatWeb`    | Command-line tool for website fingerprinting.                                                     | Uses a vast database of signatures to identify various web technologies.                            |
+| `Netcraft`   | Offers a range of web security services, including website fingerprinting and security reporting. | Provides detailed reports on a website's technology, hosting provider, and security posture.        |
 
 ### SSL Certificate
 The SSL certificate of a website can provide valuable information about the domains and subdomains associated with it. Often, a single certificate can cover multiple domains.
@@ -42,7 +41,34 @@ The SSL certificate of a website can provide valuable information about the doma
 Use curl to grab server information
 ```bash
 curl -I <target_domain>
+
+# For virtual host use below syntax
+curl -I -H "Host:  <vhost_domain>" http://<target_ip>:<port>
 ```
+
+### Crawling
+Crawling, often called `spidering`, is the automated process of systematically browsing the World Wide Web (eg. [web archive](https://web.archive.org/)). 
+Some of the popular automatic webcrawlers tools are **BurpSuite Spider**, **OWASP ZAP** and **Scrapy**
+#### Robots.txt
+robots.txt is a simple text file placed in the root directory of a website (e.g. `www.example.com/robots.txt`). It adheres to the Robots Exclusion Standard, guidelines for how web crawlers should behave when visiting a website. This file contains instructions in the form of "directives" that tell bots which parts of the website they can and cannot crawl.
+
+```txt
+User-agent: *
+Disallow: /admin/
+Disallow: /private/
+Allow: /public/
+
+User-agent: Googlebot
+Crawl-delay: 10
+
+Sitemap: https://www.example.com/sitemap.xml
+```
+
+#### Sitemap
+sitemap provides the URL to an XML sitemap for more efficient crawling (e.g. `https://www.example.com/sitemap.xml`)
+
+#### Well-known
+This designated location, typically accessible via the `/.well-known/` path on a web server, centralizes a website's critical metadata, including configuration files and information related to its services, protocols, and security mechanisms
 
 ### crt.sh
 You can use **Certificate Transparency logs** to find subdomains
@@ -116,6 +142,43 @@ In this command:
 `-h` specifies target host
 `-Tunning b` flag tells `nikto` to only run software identification
 
+## Automating Recon
+We can fastforward the above process using frameworks for web reconnaissance like FinalRecon.
+### FinalRecon
+`FinalRecon` offers a wealth of recon information:
+
+- `Header Information`: Reveals server details, technologies used, and potential security misconfigurations.
+- `Whois Lookup`: Uncovers domain registration details, including registrant information and contact details.
+- `SSL Certificate Information`: Examines the SSL/TLS certificate for validity, issuer, and other relevant details.
+- `Crawler`:
+    - HTML, CSS, JavaScript: Extracts links, resources, and potential vulnerabilities from these files.
+    - Internal/External Links: Maps out the website's structure and identifies connections to other domains.
+    - Images, robots.txt, sitemap.xml: Gathers information about allowed/disallowed crawling paths and website structure.
+    - Links in JavaScript, Wayback Machine: Uncovers hidden links and historical website data.
+- `DNS Enumeration`: Queries over 40 DNS record types, including DMARC records for email security assessment.
+- `Subdomain Enumeration`: Leverages multiple data sources (crt.sh, AnubisDB, ThreatMiner, CertSpotter, Facebook API, VirusTotal API, Shodan API, BeVigil API) to discover subdomains.
+- `Directory Enumeration`: Supports custom wordlists and file extensions to uncover hidden directories and files.
+- `Wayback Machine`: Retrieves URLs from the last five years to analyse website changes and potential vulnerabilities.
+
+#### Installation
+```bash
+git clone https://github.com/thewhiteh4t/FinalRecon.git
+cd FinalRecon
+pip3 install -r requirements.txt
+chmod u+x ./finalrecon.py
+./finalrecon.py --help
+
+```
+
+#### Other useful tools
+- https://github.com/lanmaster53/recon-ng
+- https://github.com/laramies/theHarvester
+- https://github.com/smicallef/spiderfoot
+- https://osintframework.com/
+- https://github.com/projectdiscovery/katana
+
+
+
 ## Sources
-- https://who.is/
+- 
 

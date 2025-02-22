@@ -38,7 +38,6 @@ You can find more information about ssh authentication methods here at: [https:/
 - Secure file transfers throught tools like SCP or SFTP
 - Encrypted tunneling and port forwarding
 ## Dangerous Settings
-Despite the SSH protocol being one of the most secure protocols available today, some misconfigurations can still make the SSH server vulnerable to easy-to-execute attacks.
 
 | **Setting**                  | **Description**                             |
 | ---------------------------- | ------------------------------------------- |
