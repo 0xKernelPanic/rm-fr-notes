@@ -6,7 +6,6 @@ tags:
   - active
   - file_sharing
   - reconnaissance
-  - nfs
 created: 2025-02-20
 ---
 
@@ -79,9 +78,9 @@ chmod +x ./target-NFS/test.sh
 ```
 
 ## Related
-- **[[SMB]]** Server Message Block 
-- **RPC** (Remote Procedure Call)
-- ***[[1 Projects/IT/02_Security_Notes/Red_Team/Reconnaissance/Active/FTP|FTP]]*** (File Transfer Protocol)
+- [[SMB]]
+- RPC
+- [[1 Projects/IT/02_Security_Notes/Red_Team/Reconnaissance/Active/FTP|FTP]]
 
 ## References
 - https://en.wikipedia.org/wiki/Network_File_System

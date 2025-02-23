@@ -5,7 +5,7 @@ tags:
   - networking
   - reconnaissance
   - active
-  - ftp
+  - file_sharing
 created: 2025-02-18
 ---
 
@@ -81,9 +81,9 @@ ftp://anonymous:anonymous@<target_ip>
 ```
 
 ## Related
-- **SFTP** (Secure File Transfer Protocol)
-- **FTPS** (FTP Secure)
-- **TFTP** (Trivial File Transfer Protocol)
+- SFTP
+- FTPS
+- TFTP
 
 ## References
 - https://hackviser.com/tactics/pentesting/services/ftp

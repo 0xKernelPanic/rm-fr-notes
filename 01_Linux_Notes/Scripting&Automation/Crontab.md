@@ -53,7 +53,7 @@ For example
 crontab -l #list current cronjobs
 crontab -e #edit crontab file
 crontab -r #remove all cronjobs
-crontab -u <username> --all-of-above #do action by specific user
+crontab -u <username> -<all-of-above> #do action by specific user
 ```
 
 ## Examples

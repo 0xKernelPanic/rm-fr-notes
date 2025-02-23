@@ -1,1 +1,0 @@
-# Information Gathering - Web Edition

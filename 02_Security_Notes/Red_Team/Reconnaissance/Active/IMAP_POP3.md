@@ -3,10 +3,9 @@ title: IMAP POP3
 tags:
   - protocol
   - networking
-  - imap
-  - pop3
   - reconnaissance
   - active
+  - mail
 created: 2025-02-20
 ---
 
@@ -60,17 +59,6 @@ created: 2025-02-20
 - **Security Compliance:** Organizations may configure IMAP/POP3 to comply with data retention policies.
 
 ## Dangerous Settings
-Configuration options that were improperly configured 
-could allow us to obtain more information, such as debugging the 
-executed commands on the service or logging in as anonymous, similar to 
-the FTP service. Most companies use third-party email providers such as 
-Google, Microsoft, and many others. However, some companies still use 
-their own mail servers for many different reasons. One of these reasons 
-is to maintain the privacy that they want to keep in their own hands. 
-Many configuration mistakes can be made by administrators, which in the 
-worst cases will allow us to read all the emails sent and received, 
-which may even contain confidential or sensitive information. Some of 
-these configuration options include:
 
 | **Setting**               | **Description**                                                                           |
 | ------------------------- | ----------------------------------------------------------------------------------------- |
@@ -104,7 +92,7 @@ openssl s_client -connect <target_ip>:pop3s
 
 
 ## Related
-- **[[SMTP]]** (Simple Mail Transfer Protocol)
+- [[SMTP]]
 
 ## References
 - https://www.atmail.com/blog/imap-101-manual-imap-sessions/

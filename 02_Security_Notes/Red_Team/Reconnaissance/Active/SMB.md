@@ -3,7 +3,6 @@ title: SMB
 tags:
   - protocol
   - networking
-  - smb
   - file_sharing
   - reconnaissance
   - active
@@ -11,11 +10,10 @@ created: 2025-02-21
 ---
 
 # SMB
-
 ## Basic Information
 - **Full Name:**  Server Message Block
 - **Abbreviation:** SMB
-- **OSI Layer:** 7 (Application Layer)
+- **OSI Layer:** Application (Layer 7)
 - **Default Port(s):** 
 	TCP 445 (Modern Implementations),
 	TCP 137, 138, 139 (Older Implementations)
@@ -123,9 +121,9 @@ enum4linux -a <target_ip>
 
 ## Related
 
-- **Samba** (smb for unix systems)
-- **NFS** (Network File System)
-- **RPC** (Remote Procedure Call)
+- Samba
+- NFS
+- RPC
 
 ## Fun Facts
 - The infamous **WannaCry ransomware** exploited SMB vulnerabilities.

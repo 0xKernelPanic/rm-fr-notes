@@ -3,9 +3,9 @@ title: SSH
 tags:
   - protocol
   - networking
-  - ssh
   - reconnaissance
   - active
+  - remote_access
 created: 2025-02-19
 ---
 
@@ -78,9 +78,9 @@ ssh -v <user>@<target_ip> -o PreferredAuthentications=password
 ```
 
 ## Related
-- **SCP** (Secure Copy Protocol)
-- **SFTP** (SSH File Transfer Protocol)
-- **Telnet** is a legacy unencrypted ssh
+- SCP
+- SFTP
+- Telnet
 
 ## References
 - https://www.keyfactor.com/blog/ssh-attack-vector-dormant-forgotten-keys/

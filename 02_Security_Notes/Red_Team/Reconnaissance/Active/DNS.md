@@ -26,7 +26,7 @@ created: 2025-02-19
 The **Domain Name System (DNS)** is a decentralized naming system that converts human-readable domain names (like `example.com`) into machine-readable IP addresses (such as `192.168.1.1`). It’s a vital part of the internet's infrastructure, enabling devices to locate each other and communicate.
 
 ### DNS Concepts
-| DNS Concept                 | Description                                                                      | Example                                                                                                                                 |
+| **DNS Concept**             | **Description**                                                                  | **Example**                                                                                                                             |
 | --------------------------- | -------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | `Domain Name`               | A human-readable label for a website or other internet resource.                 | `www.example.com`                                                                                                                       |
 | `IP Address`                | A unique numerical identifier assigned to each device connected to the internet. | `192.0.2.1`                                                                                                                             |
@@ -210,9 +210,9 @@ curl -H "Host: your-virtual-host.com" http://<target_ip>/
 you can also add entry in `/etc/hosts` file.
 
 ## Related
-- **DNSSEC** (DNS Security Extension)
-- **DoH** (DNS over HTTPS)
-- **DoT** (DNS over TLS)
+- DNSSEC
+- DoH
+- DoT
 
 ## Fun Facts
 - "`IN`" stands for `internet`. It's a class field in DNS records that specifies the protocol family. There are other class values, but there are rarely used (e.g `CH` for Chaosnet, `HS` for Hesiod) 
