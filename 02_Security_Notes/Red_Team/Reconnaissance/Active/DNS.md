@@ -145,7 +145,7 @@ Many different tools can be used for this, and most of them work in the same way
 dnsenum --enum <target_domain> -f /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -r
 ```
 In this command:
-`-r` recursively will try to enumerate subdomains of that subdomain.
+`-r` recursively will try to enumerate subdomains of that subdomain
 
 We can also enumerate subdomains
 
