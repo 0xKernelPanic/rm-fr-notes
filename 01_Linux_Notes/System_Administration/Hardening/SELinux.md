@@ -79,16 +79,73 @@ ps -eZ | grep sshd
 
 ##### For files
 ```bash
-semanage fcontext -a 
+
+# To list file or directory context
+ls -laZ 
+# To list contexts of a http
+semanage fcontext -l | grep httpd 
+# Add context for a folder
+semanage fcontext -a -t httpd_sys_content_t "/root/www/(.*)?"
+
+# Relabel
+restorecon -R -v /root/www
 ```
 ##### For network services
 
 ```bash
-semanage port -l | grep 80
+# To list context of 80 port
+semanage port -l | grep 80 
 
+# To add httpd context on port 82/TCP
 semanage port -a -t http_port_t -p tcp 82
+
+# To remove httpd context on port 82/TCP
+semanage port -d -t http_port_t -p tcp 82 
+
 ```
 
+### Booleans
+####  For a list of booleans and explanation of each one
+```bash
+semanage boolean -l
+```
+
+#### To temporarily enable booolean
+for example to temporarily enable `httpd_can_network_connect_db` which allows Apache HTTP Server scripts and modules to connect to database servers.
+```bash
+setsebool httpd_can_network_connect_db on
+```
+
+#### getsebool to verify if boolean is enabled
+```
+getsebool httpd_can_network_connect_db
+```
+
+#### To make changes persistent across reboots
+```bash
+setsebool -P httpd_can_network_connect_db on
+```
+
+### SELinux Troubleshooting
+
+#### Ausearch
+Use the `ausearch` utility to find any recent AVC messages and confirm that SELinux denies the action.
+```bash
+ausearch -m AVC,USER_AVC -ts recent
+```
+
+#### Journalctl
+Use the `journalctl` utility to view more information about the AVC message
+```bash
+journalctl -t setroubleshoot --since= [time]
+#journalctl -t setroubleshoot --since=14:20
+```
+
+#### Grep on log file
+Use grep with `denied` on /var/log/audit
+```bash
+grep denied /var/log/audit/*
+```
 
 ## Related
 - [[Apparmor]]
@@ -97,4 +154,5 @@ semanage port -a -t http_port_t -p tcp 82
 ## Sources
 - https://documentation.suse.com/en-us/sle-micro/6.0/html/Micro-selinux/index.html
 - https://www.redhat.com/en/topics/linux/what-is-selinux#how-does-it-work
+- https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/selinux_users_and_administrators_guide/sect-security-enhanced_linux-working_with_selinux-booleans#sect-Security-Enhanced_Linux-Booleans-Configuring_Booleans
 - 
