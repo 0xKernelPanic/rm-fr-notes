@@ -14,10 +14,23 @@ Prowler is an open-source tool for scanning and securing cloud environments that
 - Detects AWS security misconfigurations and vulnerabilities.
 - Generates detailed reports in various formats
 ## Commands
+### Installation
+```bash
+# Repo
+git clone https://github.com/prowler-cloud/prowler
 
+# Install and run
+cd prowler
+apt install python3-poetry
+poetry shell
+poetry install
+python prowler.py -v
+```
+
+### Configure Credentials
 
 ## Fun Facts
 - 
 
 ## Sources
-- link
+- https://aakibkhan1.medium.com/aws-security-best-practices-assessments-using-prowler-f561aed83828
