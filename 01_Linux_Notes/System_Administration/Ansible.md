@@ -74,7 +74,7 @@ Run playbook
 ansible-playbook iluvnano.yml 
 ```
 ## Fun Facts
-- - Ansible is **agentless**, meaning it doesn’t require additional software installed on target machines.
+- Ansible is **agentless**, meaning it doesn’t require additional software installed on target machines.
 - It uses **SSH for Linux** and **WinRM for Windows** to communicate with managed nodes.
 
 ## Sources
