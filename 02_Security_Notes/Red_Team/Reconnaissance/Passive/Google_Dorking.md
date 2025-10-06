@@ -50,5 +50,5 @@ Here are some common examples of Google Dorks:
     - `site:example.com inurl:backup`
     - `site:example.com filetype:sql`
 
-## Sources
+## References
 - https://www.exploit-db.com/google-hacking-database

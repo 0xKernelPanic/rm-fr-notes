@@ -32,5 +32,5 @@ python prowler.py -v
 ## Fun Facts
 - 
 
-## Sources
+## References
 - https://aakibkhan1.medium.com/aws-security-best-practices-assessments-using-prowler-f561aed83828

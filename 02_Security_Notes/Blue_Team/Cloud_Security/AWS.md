@@ -131,6 +131,9 @@ AWS identity and access management is used to create and manage aws users, group
 ##### ConsoleME
 ConsoleMe is an open source Netflix project to self-serve short-lived IAM policies so an end user can access AWS resources while enforcing JEA and JIT (Just-Enough-Access Just-In-Time)
 
+##### Policy Simulator
+https://policysim.aws.amazon.com
+
 ##  References 
 - https://en.wikipedia.org/wiki/Amazon_Web_Services
 - https://aws.amazon.com/architecture/security-identity-compliance/?cards-all.sort-by=item.additionalFields.sortDate&cards-all.sort-order=desc&awsf.content-type=*all&awsf.methodology=*all
